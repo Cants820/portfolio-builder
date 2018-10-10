@@ -1,12 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { withStyles, Table, TableBody, TableHead, TableRow, Paper } from '@material-ui/core/';
 
 const styles = {
   root: {
@@ -19,9 +13,9 @@ const styles = {
 };
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(stockSymbol, stockName, closingPrice, openingPrice, divYield, divAmount) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, stockSymbol, stockName, closingPrice, openingPrice, divYield, divAmount };
 }
 
 const data = [
@@ -40,11 +34,12 @@ function SimpleTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
+            <TableCell>Stock Ticker</TableCell>
+            <TableCell>Stock Name</TableCell>
+            <TableCell numeric>Opening Price (USD)</TableCell>
+            <TableCell numeric>Closing Price (USD) </TableCell>
+            <TableCell numeric>Dividend Yield (%)</TableCell>
+            <TableCell numeric>Dividend Amount (USD)</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -52,12 +47,13 @@ function SimpleTable(props) {
             return (
               <TableRow key={n.id}>
                 <TableCell component="th" scope="row">
-                  {n.name}
+                  {n.stockSymbol}
                 </TableCell>
-                <TableCell numeric>{n.calories}</TableCell>
-                <TableCell numeric>{n.fat}</TableCell>
-                <TableCell numeric>{n.carbs}</TableCell>
-                <TableCell numeric>{n.protein}</TableCell>
+                <TableCell>{n.stockName}</TableCell>
+                <TableCell numeric>{n.openingPrice}</TableCell>
+                <TableCell numeric>{n.closingPrice}</TableCell>
+                <TableCell numeric>{n.divYield}</TableCell>
+                <TableCell numeric>{n.divAmount}</TableCell>
               </TableRow>
             );
           })}
